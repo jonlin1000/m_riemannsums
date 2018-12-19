@@ -1,0 +1,288 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 11.2' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[     12659,        280]
+NotebookOptionsPosition[     12012,        260]
+NotebookOutlinePosition[     12358,        275]
+CellTagsIndexPosition[     12315,        272]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell["Homework 7.1: Integral Visualization", "Title",
+ CellChangeTimes->{{3.7507179776119328`*^9, 
+  3.750717984121543*^9}},ExpressionUUID->"a70ee3a1-0ad4-43a6-93c4-\
+9e647c6ebcb2"],
+
+Cell["\<\
+Here we have a visualization of the Riemann Integral. Though I know that the \
+morally correct way to define the integral is through lower and upper sums, \
+the moral of that story eventually turns out to show that any approximation \
+that looks like it should work probably does. So I\[CloseCurlyQuote]m not \
+morally against even partition left sums or right sums as incorrect ways of \
+defining the integral.
+We need to define certain parameters in our model:
+[a, b], A closed interval where we are attempting to find the algebraic area
+f, the function in question. Though it only needs to be integrable, for a \
+great visualization we probably want it to be continuous.
+n, the number of rectangles we want in our approximation.\
+\>", "Text",
+ CellChangeTimes->{{3.7507180002645392`*^9, 3.7507180225716877`*^9}, {
+  3.7507180696520414`*^9, 
+  3.7507182985628233`*^9}},ExpressionUUID->"12de450d-fb1a-42f6-8b1c-\
+c1eef848caeb"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Manipulate", "[", 
+  RowBox[{
+   RowBox[{"Show", "[", 
+    RowBox[{
+     RowBox[{"Plot", "[", 
+      RowBox[{"f", ",", " ", 
+       RowBox[{"{", 
+        RowBox[{"x", ",", " ", "p", ",", " ", "q"}], "}"}], ",", " ", 
+       RowBox[{"PlotRange", " ", "\[Rule]", " ", 
+        RowBox[{"{", 
+         RowBox[{"c", ",", " ", "d"}], "}"}]}]}], "]"}], ",", 
+     "\[IndentingNewLine]", 
+     RowBox[{"Table", "[", 
+      RowBox[{
+       RowBox[{"RegionPlot", "[", 
+        RowBox[{
+         RowBox[{"Evaluate", "[", 
+          RowBox[{
+           RowBox[{"0", "\[LessEqual]", " ", "y", " ", "\[LessEqual]", " ", 
+            RowBox[{"(", 
+             RowBox[{"f", "/.", " ", 
+              RowBox[{"x", " ", "\[Rule]", " ", 
+               RowBox[{"a", " ", "+", " ", 
+                FractionBox[
+                 RowBox[{
+                  RowBox[{"(", 
+                   RowBox[{"b", " ", "-", " ", "a"}], ")"}], "i"}], 
+                 "j"]}]}]}], ")"}]}], "&&", " ", 
+           RowBox[{
+            RowBox[{"a", " ", "+", " ", 
+             FractionBox[
+              RowBox[{
+               RowBox[{"(", 
+                RowBox[{"b", " ", "-", " ", "a"}], ")"}], "i"}], "j"]}], " ", 
+            "\[LessEqual]", " ", "x", " ", "\[LessEqual]", " ", 
+            RowBox[{"a", " ", "+", " ", 
+             FractionBox[
+              RowBox[{
+               RowBox[{"(", 
+                RowBox[{"b", " ", "-", " ", "a"}], ")"}], 
+               RowBox[{"(", 
+                RowBox[{"i", " ", "+", " ", "1"}], ")"}]}], "j"]}]}]}], "]"}],
+          ",", " ", 
+         RowBox[{"{", 
+          RowBox[{"x", ",", " ", 
+           RowBox[{"-", "10"}], ",", " ", "10"}], "}"}], ",", " ", 
+         RowBox[{"{", 
+          RowBox[{"y", ",", " ", "c", ",", " ", "d"}], "}"}], ",", " ", 
+         RowBox[{"PlotPoints", " ", "\[Rule]", " ", "75"}], ",", " ", 
+         RowBox[{"PlotStyle", " ", "\[Rule]", " ", 
+          RowBox[{"{", 
+           RowBox[{"Green", ",", " ", 
+            RowBox[{"Opacity", "[", "0.2", "]"}]}], "}"}]}]}], "]"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"i", ",", " ", "0", ",", " ", "j"}], "}"}]}], "]"}]}], "]"}], 
+   ",", " ", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"j", ",", " ", "10", ",", " ", "\"\<Number of Rectangles\>\""}],
+       "}"}], ",", " ", "5", ",", " ", "15", ",", " ", "1"}], "}"}], ",", " ", 
+   RowBox[{"{", 
+    RowBox[{"{", 
+     RowBox[{"f", ",", " ", 
+      RowBox[{
+       RowBox[{".05", 
+        RowBox[{"x", "^", "2"}]}], " ", "+", " ", "5"}], ",", " ", 
+      "\"\<Function\>\""}], "}"}], "}"}], ",", " ", 
+   RowBox[{"{", 
+    RowBox[{"{", 
+     RowBox[{"c", ",", " ", "0", ",", " ", "\"\<Ymin\>\""}], "}"}], "}"}], 
+   ",", " ", 
+   RowBox[{"{", 
+    RowBox[{"{", 
+     RowBox[{"d", ",", " ", "10", ",", " ", "\"\<Ymax\>\""}], "}"}], "}"}], 
+   ",", " ", 
+   RowBox[{"{", 
+    RowBox[{"{", 
+     RowBox[{"a", ",", " ", "0"}], "}"}], "}"}], ",", " ", 
+   RowBox[{"{", 
+    RowBox[{"{", 
+     RowBox[{"b", ",", " ", "10"}], "}"}], "}"}], ",", " ", 
+   RowBox[{"{", 
+    RowBox[{"{", 
+     RowBox[{"p", ",", " ", "0", ",", " ", "\"\<Xmin\>\""}], "}"}], "}"}], 
+   ",", " ", 
+   RowBox[{"{", 
+    RowBox[{"{", 
+     RowBox[{"q", ",", " ", "10", ",", " ", "\"\<Xmax\>\""}], "}"}], "}"}]}], 
+  "]"}]], "Input",
+ CellChangeTimes->{{3.75071863414215*^9, 3.7507186999822903`*^9}, {
+   3.7507189230960364`*^9, 3.750718931563594*^9}, {3.752504385994218*^9, 
+   3.7525044143223405`*^9}, {3.752504457197404*^9, 3.752504833795664*^9}, {
+   3.752504995994436*^9, 3.7525050149637976`*^9}, {3.7525050765539556`*^9, 
+   3.7525050838285837`*^9}, {3.752505115400405*^9, 3.7525052133612623`*^9}, {
+   3.752505274933337*^9, 3.752505281321721*^9}, {3.7525053333302917`*^9, 
+   3.752505375916692*^9}, {3.7525058920302467`*^9, 3.7525059696173463`*^9}, {
+   3.752506045524605*^9, 3.752506079666315*^9}, {3.75250622370535*^9, 
+   3.752506249558442*^9}, {3.752506347113903*^9, 3.75250635736163*^9}, {
+   3.7525071823936176`*^9, 3.7525071995279126`*^9}, {3.7525072513059187`*^9, 
+   3.752507256822236*^9}, {3.7525074907108154`*^9, 3.7525075452408247`*^9}, {
+   3.7525076938858595`*^9, 3.7525077041563716`*^9}, {3.7525077958322306`*^9, 
+   3.7525078224631505`*^9}, {3.7525079381866255`*^9, 
+   3.7525079884733596`*^9}, {3.752508021451438*^9, 3.7525081401440167`*^9}, {
+   3.752508201291342*^9, 3.752508204473854*^9}, {3.7525083420418153`*^9, 
+   3.7525084177106075`*^9}, {3.752508454637117*^9, 3.752508459998437*^9}, {
+   3.752508572962084*^9, 3.752508622014635*^9}, {3.7525088260796947`*^9, 
+   3.7525088536473436`*^9}, {3.7525089281460676`*^9, 
+   3.7525089369880795`*^9}, {3.752508979061983*^9, 3.7525089818763924`*^9}, {
+   3.7525094507000055`*^9, 3.7525094693961735`*^9}, {3.7525095152669125`*^9, 
+   3.752509519107546*^9}, {3.752509586343339*^9, 3.7525096046698365`*^9}, {
+   3.7525096425698123`*^9, 3.7525097688439617`*^9}, 3.7525098056146574`*^9, {
+   3.7525099721998014`*^9, 3.7525099884893217`*^9}, {3.7525100337467947`*^9, 
+   3.752510039181492*^9}, {3.752526848090869*^9, 3.752526851246277*^9}, {
+   3.7525269508594484`*^9, 3.7525269684755807`*^9}, {3.7525270473328047`*^9, 
+   3.7525270944758997`*^9}, {3.752527126704412*^9, 3.7525271293802967`*^9}, 
+   3.752527161813115*^9, {3.7525273764728565`*^9, 3.7525273817268133`*^9}, {
+   3.752527432130698*^9, 3.7525274561302557`*^9}, {3.7525274924070606`*^9, 
+   3.7525275714373317`*^9}, {3.7525277003029704`*^9, 
+   3.7525278019858484`*^9}, {3.752527851332201*^9, 3.7525279207116528`*^9}, {
+   3.7525291045442786`*^9, 3.7525291565034904`*^9}, {3.7525292477322083`*^9, 
+   3.7525294158110156`*^9}, {3.7525294497731657`*^9, 3.752529465215665*^9}, {
+   3.752529583634279*^9, 3.7525295924561706`*^9}, {3.752529630652305*^9, 
+   3.7525296819640985`*^9}, {3.7525297400584836`*^9, 
+   3.7525297591958275`*^9}},ExpressionUUID->"9cbfec2d-a913-417d-9a8e-\
+e88b7d9ef14b"],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox[
+   DynamicModuleBox[{CloudObject`Private`a$$ = 0, CloudObject`Private`b$$ = 
+    10, $CellContext`c$$ = 0, CloudObject`Private`d$$ = 10, $CellContext`f$$ =
+     5 + Sin[$CellContext`x], $CellContext`j$$ = 11, CloudObject`Private`p$$ =
+     0, CloudObject`Private`q$$ = 10, Typeset`show$$ = True, 
+    Typeset`bookmarkList$$ = {}, Typeset`bookmarkMode$$ = "Menu", 
+    Typeset`animator$$, Typeset`animvar$$ = 1, Typeset`name$$ = 
+    "\"untitled\"", Typeset`specs$$ = {{{
+       Hold[$CellContext`j$$], 10, "Number of Rectangles"}, 5, 15, 1}, {{
+       Hold[$CellContext`f$$], 5 + 0.05 $CellContext`x^2, "Function"}}, {{
+       Hold[$CellContext`c$$], 0, "Ymin"}}, {{
+       Hold[CloudObject`Private`d$$], 10, "Ymax"}}, {{
+       Hold[CloudObject`Private`a$$], 0}}, {{
+       Hold[CloudObject`Private`b$$], 10}}, {{
+       Hold[CloudObject`Private`p$$], 0, "Xmin"}}, {{
+       Hold[CloudObject`Private`q$$], 10, "Xmax"}}}, Typeset`size$$ = {
+    360., {118., 122.}}, Typeset`update$$ = 0, Typeset`initDone$$, 
+    Typeset`skipInitDone$$ = True, $CellContext`j$140851$$ = 0}, 
+    DynamicBox[Manipulate`ManipulateBoxes[
+     1, StandardForm, 
+      "Variables" :> {
+       CloudObject`Private`a$$ = 0, CloudObject`Private`b$$ = 
+        10, $CellContext`c$$ = 0, CloudObject`Private`d$$ = 
+        10, $CellContext`f$$ = 5 + 0.05 $CellContext`x^2, $CellContext`j$$ = 
+        10, CloudObject`Private`p$$ = 0, CloudObject`Private`q$$ = 10}, 
+      "ControllerVariables" :> {
+        Hold[$CellContext`j$$, $CellContext`j$140851$$, 0]}, 
+      "OtherVariables" :> {
+       Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
+        Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
+        Typeset`specs$$, Typeset`size$$, Typeset`update$$, Typeset`initDone$$,
+         Typeset`skipInitDone$$}, "Body" :> Show[
+        Plot[$CellContext`f$$, {$CellContext`x, CloudObject`Private`p$$, 
+          CloudObject`Private`q$$}, 
+         PlotRange -> {$CellContext`c$$, CloudObject`Private`d$$}], 
+        Table[
+         RegionPlot[
+          Evaluate[
+           And[
+           0 <= $CellContext`y <= 
+            ReplaceAll[$CellContext`f$$, $CellContext`x -> 
+              CloudObject`Private`a$$ + (CloudObject`Private`b$$ - 
+                 CloudObject`Private`a$$) $CellContext`i/$CellContext`j$$], 
+            CloudObject`Private`a$$ + (CloudObject`Private`b$$ - 
+               CloudObject`Private`a$$) $CellContext`i/$CellContext`j$$ <= \
+$CellContext`x <= 
+            CloudObject`Private`a$$ + (CloudObject`Private`b$$ - 
+               CloudObject`Private`a$$) ($CellContext`i + 
+               1)/$CellContext`j$$]], {$CellContext`x, -10, 
+           10}, {$CellContext`y, $CellContext`c$$, CloudObject`Private`d$$}, 
+          PlotPoints -> 75, PlotStyle -> {Green, 
+            Opacity[0.2]}], {$CellContext`i, 0, $CellContext`j$$}]], 
+      "Specifications" :> {{{$CellContext`j$$, 10, "Number of Rectangles"}, 5,
+          15, 1}, {{$CellContext`f$$, 5 + 0.05 $CellContext`x^2, 
+          "Function"}}, {{$CellContext`c$$, 0, "Ymin"}}, {{
+         CloudObject`Private`d$$, 10, "Ymax"}}, {{
+         CloudObject`Private`a$$, 0}}, {{CloudObject`Private`b$$, 10}}, {{
+         CloudObject`Private`p$$, 0, "Xmin"}}, {{
+         CloudObject`Private`q$$, 10, "Xmax"}}}, "Options" :> {}, 
+      "DefaultOptions" :> {}],
+     ImageSizeCache->{747., {149., 155.}},
+     SingleEvaluation->True],
+    Deinitialization:>None,
+    DynamicModuleValues:>{},
+    SynchronousInitialization->True,
+    UndoTrackedVariables:>{Typeset`show$$, Typeset`bookmarkMode$$},
+    UnsavedVariables:>{Typeset`initDone$$},
+    UntrackedVariables:>{Typeset`size$$}], "Manipulate",
+   Deployed->True,
+   StripOnInput->False],
+  Manipulate`InterpretManipulate[1]]], "Output",
+ CellChangeTimes->{
+  3.752527533703096*^9, {3.752527565810837*^9, 3.752527573024423*^9}, {
+   3.7525277072221746`*^9, 3.752527732646197*^9}, {3.752527767324749*^9, 
+   3.7525278028353443`*^9}, {3.752527902441718*^9, 3.7525279219316854`*^9}, 
+   3.752529161382594*^9, 3.752529306034027*^9, 3.7525293820188737`*^9, 
+   3.7525294197927375`*^9, {3.7525294559197435`*^9, 3.7525294667676945`*^9}, 
+   3.752529594258557*^9, 3.752529685568853*^9, {3.7525297493689537`*^9, 
+   3.7525297600451717`*^9}},ExpressionUUID->"0c6c0ba2-646f-4c81-9fea-\
+21dcf2d801ee"]
+}, Open  ]]
+}, Open  ]]
+},
+WindowSize->{1438, 805},
+WindowMargins->{{0, Automatic}, {Automatic, 0}},
+FrontEndVersion->"11.2 for Microsoft Windows (64-bit) (September 10, 2017)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[580, 22, 181, 3, 96, "Title",ExpressionUUID->"a70ee3a1-0ad4-43a6-93c4-9e647c6ebcb2"],
+Cell[764, 27, 938, 16, 144, "Text",ExpressionUUID->"12de450d-fb1a-42f6-8b1c-c1eef848caeb"],
+Cell[CellGroupData[{
+Cell[1727, 47, 5895, 126, 146, "Input",ExpressionUUID->"9cbfec2d-a913-417d-9a8e-e88b7d9ef14b"],
+Cell[7625, 175, 4359, 81, 356, "Output",ExpressionUUID->"0c6c0ba2-646f-4c81-9fea-21dcf2d801ee"]
+}, Open  ]]
+}, Open  ]]
+}
+]
+*)
+
